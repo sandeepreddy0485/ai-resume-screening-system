@@ -1,0 +1,9 @@
+Y. Sandeep Reddy
+B.Tech in Computer Science Engineering
+
+I am a Computer Science student with strong knowledge of Python, Java, AI and Machine Learning.
+I have hands-on experience in NLP-based projects and backend development using FastAPI and Flask.
+
+Internship Experience:
+AICTE Internship on AI – Microsoft & SAP (Edunet Foundation)
+Worked on AI-powered Resume Screening and Ranking System.
