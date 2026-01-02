@@ -1,5 +1,4 @@
 We are looking for a Backend / AI Engineer.
-
 Required skills:
 Python
 Java
@@ -7,5 +6,4 @@ FastAPI
 Machine Learning
 NLP
 SQL
-
 Candidates with internship experience in AI projects are preferred.
