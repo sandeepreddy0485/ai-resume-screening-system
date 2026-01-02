@@ -53,6 +53,10 @@ class ResumeRequest(BaseModel):
     resume_text: str
     job_description: str
 
+class BulkResumeRequest(BaseModel):
+    resumes: list[str]
+    job_description: str
+
 
 # ------------------ API Endpoints ------------------
 
@@ -71,3 +75,25 @@ def match_resume(data: ResumeRequest):
         "matched_skills": matched,
         "parsed_resume": parsed
     }
+@app.post("/rank")
+def rank_resumes(data: BulkResumeRequest):
+    results = []
+
+    for idx, resume_text in enumerate(data.resumes):
+        parsed = parse_resume(resume_text)
+        score, matched = final_weighted_score(parsed, data.job_description)
+
+        results.append({
+            "resume_id": idx + 1,
+            "score": score,
+            "matched_skills": matched
+        })
+
+    # sort by score (highest first)
+    results.sort(key=lambda x: x["score"], reverse=True)
+
+    return {
+        "job_description": data.job_description,
+        "ranked_resumes": results
+    }
+
