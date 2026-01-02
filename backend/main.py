@@ -1,6 +1,8 @@
 import re
 from fastapi import FastAPI
 from pydantic import BaseModel
+from database import Base, engine
+from models import User
 
 app = FastAPI(title="AI Resume Screening API")
 
@@ -59,7 +61,7 @@ class BulkResumeRequest(BaseModel):
 
 
 # ------------------ API Endpoints ------------------
-
+Base.metadata.create_all(bind=engine)
 @app.get("/")
 def home():
     return {"message": "AI Resume Screening API is running"}
