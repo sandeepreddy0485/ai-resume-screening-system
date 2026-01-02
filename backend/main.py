@@ -53,9 +53,35 @@ def parse_resume(text):
     }
 
 
+def calculate_match_score(resume_skills, job_text):
+    job_text = job_text.lower()
+
+    matched_skills = []
+    for skill in resume_skills:
+        if skill.lower() in job_text:
+            matched_skills.append(skill)
+
+    if not resume_skills:
+        return 0, []
+
+    score = (len(matched_skills) / len(resume_skills)) * 100
+    return round(score, 2), matched_skills
+
+
 if __name__ == "__main__":
     resume_text = read_resume("sample_resume.txt")
-    parsed_data = parse_resume(resume_text)
+    job_text = read_resume("job_description.txt")
+
+    parsed_resume = parse_resume(resume_text)
+
+    score, matched = calculate_match_score(
+        parsed_resume["skills"],
+        job_text
+    )
 
     print("\nParsed Resume Data:")
-    print(parsed_data)
+    print(parsed_resume)
+
+    print("\nJob Match Score:")
+    print(f"Score: {score}%")
+    print(f"Matched Skills: {matched}")
