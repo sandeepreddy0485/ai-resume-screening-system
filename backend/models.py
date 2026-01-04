@@ -6,4 +6,5 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True)
-    role = Column(String)  # HR or CANDIDATE
+    password = Column(String)
+    role = Column(String)
